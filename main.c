@@ -10,13 +10,13 @@ int main(int argc, char *argv[])
 
 	if (argc != 2)
 	{
-		printf("Usage: %s <filename>\n", argv[0]);
-		return EXIT_FAILURE;
+		fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+		return (EXIT_FAILURE);
 	}
 	if (!file)
 	{
-		printf("Error: Unable to open file %s\n", argv[1]);
-		return EXIT_FAILURE;
+		fprintf(stderr, "Error: Unable to open file %s\n", argv[1]);
+		return (EXIT_FAILURE);
 	}
 	while (fgets(line, sizeof(line), file))
 	{
@@ -31,9 +31,25 @@ int main(int argc, char *argv[])
 			{
 				pall(&stack, line_number);
 			}
+			else if (strcmp(token, "pint") == 0)
+			{
+				pint(&stack, line_number);
+			}
+			else if (strcmp(token, "pop") == 0)
+			{
+				pop(&stack, line_number);
+			}
+			else if (strcmp(token, "add") == 0)
+			{
+				add(&stack, line_number);
+			}
+			else if (strcmp(token, "nop") == 0)
+			{
+				nop(&stack, line_number);
+			}
 			else
 			{
-				printf("Error: Unknown command at line %u\n", line_number);
+				fprintf(stderr, "Error: Unknown command at line %u\n", line_number);
 				return (EXIT_FAILURE);
 			}
 		}

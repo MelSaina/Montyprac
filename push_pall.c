@@ -17,13 +17,13 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!stack)
 	{
-		printf("Error: Invalid stack\n");
+		fprintf(stderr, "Error: Invalid stack\n");
 		exit(EXIT_FAILURE);
 	}
 	num = strtok(NULL, " \n");
 	if (!num)
 	{
-		printf("L%u: usage: push integer\n", line_number);
+		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
 	}
 	for (i=0; num[i] != '\0'; i++)
@@ -31,7 +31,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 		if (!isdigit(num[i]) && num[i] != '-')
 		{
-			printf("L%u: usage: push integer\n", line_number);
+			fprintf(stderr, "L%u: usage: push integer\n", line_number);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -40,7 +40,7 @@ void push(stack_t **stack, unsigned int line_number)
 
 	if (!new_node)
 	{
-		printf("Error: Memory allocation failed\n");
+		fprintf(stderr, "Error: Memory allocation failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new_node->n = value;
